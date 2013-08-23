@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic)NSString *contents;
 
+// getter = isFaceUP is just set the name of getter to isFaceUP.
 @property (nonatomic,getter = isFaceUP) BOOL faceup;
 @property (nonatomic,getter = isUnplayable) BOOL unplayable;
 

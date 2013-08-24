@@ -10,6 +10,7 @@
 
 @interface Deck()
 
+//A deck of cards needs some storage to keep the cards in.
 @property (strong, nonatomic) NSMutableArray *cards;
 
 @end

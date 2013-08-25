@@ -19,7 +19,7 @@
         if ([otherCard.suit isEqualToString:self.suit ]) {
             
             score = 1;
-        }else if (otherCards.rank== self.rank) {
+        }else if (otherCard.rank== self.rank) {
             score = 4;
         }
         

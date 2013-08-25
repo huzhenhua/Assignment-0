@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "Card.h"
+#import "CardMatchingGame.h"
 
 @interface CardGameViewController ()
 
@@ -16,7 +17,8 @@
 @property (nonatomic) int flipCount;
 //@property (weak, nonatomic) IBOutlet UIButton *cardButton;
 @property (strong, nonatomic) PlayingCardDeck *playingCardDeck;
-
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (strong, nonatomic) CardMatchingGame *game;
 @end
 
 @implementation CardGameViewController

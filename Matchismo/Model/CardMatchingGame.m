@@ -8,9 +8,13 @@
 
 #import "CardMatchingGame.h"
 
+
 @interface CardMatchingGame ()
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (nonatomic) int score;
+//@property (nonatomic,readwrite) NSString sMatchResult;
+@property (readwrite, nonatomic) NSString *descriptionOfLastFlip;
+
 
 @end
 
@@ -24,7 +28,6 @@
         
     }
     return _cards;
-
 }
 
 - (id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
@@ -64,6 +67,7 @@
     
     if (!card.isUnplayable) {
         if (!card.isFaceUP){
+            self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped up %@",card.contents];
             for (Card *otherCard in self.cards){
                 if (otherCard.isFaceUP && !otherCard.isUnplayable){
                     int matchScore = [card match:@[otherCard]];
@@ -71,12 +75,19 @@
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
-                    } else {
+                        //Matched J♥ & J♠ for 4 points
+                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@ & %@ for %d points",
+                         card.contents, otherCard.contents,
+                         matchScore * MATCH_BONUS];
+                    }
+                    else{
                         otherCard.faceup = NO;
                         self.score -= MISMATCH_PENALTY;
+                        //“6♦ and J♣ don’t match! 2 point penalty!”
+                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@ and %@ don't match! 2 Point penalty!",
+                                                      card.contents, otherCard.contents];
                         
-                        
-                    }
+                    }                 
                     break;
                 }
             }

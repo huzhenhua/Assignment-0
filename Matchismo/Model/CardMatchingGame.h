@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
+#import "PlayingCard.h"
 
 @interface CardMatchingGame : NSObject
 
@@ -19,5 +20,6 @@
 - (Card *)cardAtIndex:(NSUInteger)index;
 
 @property (nonatomic, readonly) int score;
+@property (readonly, nonatomic) NSString *descriptionOfLastFlip;
 
 @end
